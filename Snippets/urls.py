@@ -5,7 +5,7 @@ from django.conf import settings
 from MainApp import views
 
 
-urlpatterns = [0
+urlpatterns = [
     path('', views.index_page),
     path('snippets/add', views.add_snippet_page, name='add_snippet_page'),
     path('snippets/list', views.snippets_page, name='view_snippets_page'),
