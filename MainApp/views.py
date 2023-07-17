@@ -33,10 +33,12 @@ def get_snippets(request):
     return render(request, "pages/view_snippets.html", context)
 
 def get_snippet(request):
-    try:
-        snippet = Snippet.objects.get(id=request.GET.get("snippet_id"))
-        snippet.creation_date = snippet.creation_date.strftime("%Y-%m-%d %H:%M")
-        context = {'snippet': snippet}
-        return render(request, "pages/view_snippet.html", context)
-    except Snippet.DoesNotExist:
-        return HttpResponseNotFound("<h2>snippet not found</h2>")
+    # try:
+    #     snippet = Snippet.objects.get(id=request.GET.get("snippet_id"))
+    #     snippet.creation_date = snippet.creation_date.strftime("%Y-%m-%d %H:%M")
+    #     context = {'snippet': snippet}
+    #     return render(request, "pages/view_snippet.html", context)
+    # except Snippet.DoesNotExist:
+    #     return HttpResponseNotFound("<h2>snippet not found</h2>")
+    context = {'snippet': 'snippet'}
+    return render(request, "pages/view_snippet.html", context)

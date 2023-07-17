@@ -1,41 +1,22 @@
-<!doctype html>
-{% load static %}
-<html lang="ru" class="h-100">
+<fieldset disabled>
+   <div class="row disabled">
+       <div class="col col-8">
+           Название: <input type="text" value="Hello world" class="form-control">
+       </div>
+       <div class="col col-4">
+           Дата создания:<input type="text" value="23.11.2020" class="form-control">
+       </div>
+   </div>
+   <hr>
+   <div class="row">
+       <div class="col">
+                      <div class="p-2 h-100" style="border:1px solid #ced4da; border-radius:5px;">
+               <p>
+                   print("hello world")
+               </p>
 
-{% include 'inc/inc-head.html' %}
+           </div>
 
-
-<body class="d-flex flex-column h-100">
-
-{% include 'inc/inc-header.html' %}
-<br>
-<br>
-<br>
-<br>
-  <div class="row disabled">
-      <div class="col col-8">
-          Название: <label>
-          <input type="text" value="{{ snippet.name }}" class="form-control" readonly>
-      </label>
-      </div>
-      <div class="col col-4">
-          Дата создания: <label>
-          <input type="text" value="{{ snippet.creation_date }}" class="form-control" readonly>
-      </label>
-      </div>
-  </div>
-  <hr>
-  <div class="row">
-      <div class="col">
-          <div class="p-2 h-100" style="border:1px solid #ced4da; border-radius:5px;">
-              <pre lang="{{ snippet.lang }}">{{ snippet.code }}</pre>
-          </div>
-      </div>
-  </div>
-
-{% include 'inc/inc-footer.html' %}
-
-{% include 'inc/inc-scripts.html' %}
-</body>
-
-</html>
+       </div>
+   </div>
+</fieldset>
