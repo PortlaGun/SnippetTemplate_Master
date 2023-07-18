@@ -1,7 +1,6 @@
 <!doctype html>
 {% load static %}
 <html lang="ru" class="h-100">
-<link rel="stylesheet" href="{% static 'style.css' %}">
 
 {% include 'inc/inc-head.html' %}
 
@@ -11,13 +10,23 @@
 
 <!-- Begin page content -->
 <main role="main" class="mt-3 flex-shrink-0">
+    <br>
+    <br>
+    <br>
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
     {% block content %}
     {% endblock %}
+
 </main>
 
 {% include 'inc/inc-footer.html' %}
 
 {% include 'inc/inc-scripts.html' %}
-
 </body>
 </html>

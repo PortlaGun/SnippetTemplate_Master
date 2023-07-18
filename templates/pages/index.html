@@ -8,7 +8,6 @@
                 <hr>
             </div>
         </div>
-
         <div class="row">
             <div class="col">
                 <p>Добро пожаловать, уважаемый пользователь!
@@ -28,12 +27,12 @@
             <div class="col">
                 <hr>
                 <h4>Найти сниппет по номеру</h4>
-                <form action='' id="view_snippet_form">
+                <form id="view_snippet_form" method="GET" action="snippets">
                     <div class="form-group row">
                         <label for="snippet_id" class="col-sm-2 col-form-label col-form-label-lg">Номер:</label>
                         <div class="col-sm-8">
                             <input type="number" class="form-control form-control-lg" id="snippet_id"
-                                   placeholder="введите число">
+                                   placeholder="введите число" name="snippet_id">
                         </div>
                         <div class="col-sm-2">
                             <input type="submit" class="form-control form-control-lg btn btn-info" value="Найти">

@@ -4,7 +4,7 @@
         <div class="container">
             <a class="navbar-brand" href="/">
                 <img src="{% static 'images/logo.png' %}" width="32" height="32" alt="">
-                PythonBin
+                SnippetPile
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
                     aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -18,12 +18,24 @@
                         </a>
                     </li>
                     <li class="form-inline">
-                        <a class="btn btn-outline-info" href="{% url 'view_snippets_page' %}">
+                        <a class="btn btn-outline-info" href="{% url 'snippets_page' %}">
                             Посмотреть сниппеты
+                        </a>
+                    </li>
+                    <li class="form-inline">
+                        <a class="btn btn-outline-secondary" href="{% url 'my_snippets' %}">
+                            Мои сниппеты
                         </a>
                     </li>
                 </ul>
             </div>
         </div>
+        {% if user.is_authenticated %}
+            	<a class="nav-item nav-link" href="{% url 'profile' %}">Профиль</a>
+            	<a class="nav-item nav-link" href="{% url 'logout' %}">Выход</a>
+          	{% else %}
+            	<a class="nav-item nav-link" href="{% url 'login' %}">Вход</a>
+            	<a class="nav-item nav-link" href="{% url 'register' %}">Регистрация</a>
+          	{% endif %}
     </nav>
 </header>

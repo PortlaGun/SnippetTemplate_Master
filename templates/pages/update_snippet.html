@@ -1,0 +1,82 @@
+<!doctype html>
+{% load static %}
+<html lang="ru" class="h-100">
+
+{% include 'inc/inc-head.html' %}
+
+
+<body class="d-flex flex-column h-100">
+
+{% include 'inc/inc-header.html' %}
+<br>
+<br>
+<br>
+<div>
+<form action="/snippets/update" method="POST">
+    {% csrf_token %}
+    <div class="form-group row">
+        <div class="col-8">
+            <h4 align="center">ID</h4>
+            <input type="text" class="form-control form-control-lg" value="{{ snippet.id }}" readonly name="id">
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-8">
+            <h4 align="center">DATE OF CREATION</h4>
+            <input type="text" class="form-control form-control-lg" value="{{ snippet.creation_date }}" readonly>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-8">
+            <h4 align="center">NAME</h4>
+            <input type="text" class="form-control form-control-lg" value="{{ snippet.name }}" name="name">
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-8">
+            <h4 align="center">Language</h4>
+            <select class="form-control" name="lang">
+                <option>Python</option>
+                <option>C++</option>
+                <option>JavaScript</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-8">
+            <h4 align="center">CODE</h4>
+            <input type="text" class="form-control form-control-lg" value="{{ snippet.code }}" name="code">
+        </div>
+    </div>
+    {% if snippet.is_public %}
+    <div align="center">
+      <input type="radio" id="no_pub" name="pub" value="no_pub">
+      <label for="huey">частный</label>
+    </div>
+    <div align="center">
+      <input type="radio" id="pub" name="pub" value="pub" checked>
+      <label for="huey">публичный</label>
+    </div>
+    {% else %}
+    <div align="center">
+      <input type="radio" id="no_pub" name="pub" value="no_pub" checked>
+      <label for="huey">частный</label>
+    </div>
+    <div align="center">
+      <input type="radio" id="pub" name="pub" value="pub">
+      <label for="huey">публичный</label>
+    </div>
+    {% endif %}
+    <div class="form-group row">
+        <div class="col-8">
+            <input type="submit" class="btn btn-primary btn-block" value="Сохранить">
+        </div>
+    </div>
+</form>
+</div>>
+{% include 'inc/inc-footer.html' %}
+
+{% include 'inc/inc-scripts.html' %}
+</body>
+
+</html>

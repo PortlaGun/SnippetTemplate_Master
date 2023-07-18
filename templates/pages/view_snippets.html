@@ -26,10 +26,18 @@
             </div>
         </div>
 
-
-
         <div class="row">
             <div class="col">
+                {% if hide is False %}
+                <form action="list_hide" method="GET">
+                    <input type="submit" value="Показать скрытые" />
+                </form>
+                {% else %}
+                <form action="list" method="GET">
+                    <input type="submit" value="Скрыть скрытые" />
+                </form>
+                {% endif %}
+                <br>
                 <table class="table table-striped">
                     <thead class="thead-dark">
                     <tr>
@@ -58,7 +66,6 @@
 {% include 'inc/inc-footer.html' %}
 
 {% include 'inc/inc-scripts.html' %}
-
 </body>
 
 </html>

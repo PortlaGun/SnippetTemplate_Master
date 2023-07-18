@@ -1,0 +1,95 @@
+<!doctype html>
+{% load static %}
+<html lang="ru" class="h-100">
+
+{% include 'inc/inc-head.html' %}
+
+<body class="d-flex flex-column h-100">
+
+{% include 'inc/inc-header.html' %}
+
+<!-- Begin page content -->
+<main role="main" class="mt-3 flex-shrink-0">
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+    <div class="container">
+        <div class="row">
+            <div class="col text-center">
+                <h1>{{ pagename }}</h1>
+                <hr>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                {% if hide is False %}
+                <form action="list_hide" method="GET">
+                    <input type="submit" value="Показать скрытые" />
+                </form>
+                {% else %}
+                <form action="list" method="GET">
+                    <input type="submit" value="Скрыть скрытые" />
+                </form>
+                {% endif %}
+                <br>
+                <table class="table table-striped">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Название</th>
+                        <th scope="col">Дата создания</th>
+                        <th scope="col">Скрыто</th>
+                        <th scope="col">Удалить</th>
+                        <th scope="col">Редактировать</th>
+                    </tr>
+                    </thead>
+                    {% for snippet in snippets %}
+                    <tr>
+                        <td>{{ snippet.id }}</td>
+                        <td>{{ snippet.name }}</td>
+                        <td>{{ snippet.creation_date}}</td>
+                        <td>
+                        {% if snippet.hide %}
+                        <form action="make_hidden_or_show/{{ snippet.id }}">
+                        {% csrf_token %}
+                            <input type="submit" value="Не скрывать" />
+                        </form>
+                        {% else %}
+                        <form action="make_hidden_or_show/{{ snippet.id }}">
+                        {% csrf_token %}
+                            <input type="submit" value="Скрыть" />
+                        </form>
+                        {% endif %}
+                        </td>
+                        <td>
+                        <form action="delete/{{ snippet.id }}">
+                            <input type="submit" value="Delete" />
+                        </form>
+                        </td>
+                        <td>
+                        <form action="edit/{{ snippet.id }}">
+                            <input type="submit" value="Edit" />
+                        </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+                <div align="right">
+                    <i style="color: gray;">Всего сниппетов: {{ snippets.count }}</i>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+{% include 'inc/inc-footer.html' %}
+
+{% include 'inc/inc-scripts.html' %}
+</body>
+
+</html>
